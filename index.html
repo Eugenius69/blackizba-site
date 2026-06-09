@@ -1,656 +1,655 @@
 <!doctype html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Black Izba — Coming Soon</title>
-
-<style>
-:root {
-  --black: #030302;
-  --void: #070605;
-  --bone: #b8ab92;
-  --bone-soft: #8e826e;
-  --bone-dim: #514a3e;
-  --ash: #171411;
-  --red: #641111;
-}
-
-* {
-  box-sizing: border-box;
-}
-
-html,
-body {
-  margin: 0;
-  min-height: 100%;
-  background: var(--black);
-  color: var(--bone);
-  font-family: Georgia, "Times New Roman", serif;
-}
-
-body {
-  overflow-x: hidden;
-}
-
-.site {
-  position: relative;
-  min-height: 100vh;
-  padding: 42px clamp(24px, 5vw, 76px) 34px;
-  display: grid;
-  grid-template-rows: auto 1fr auto;
-  isolation: isolate;
-  background:
-    radial-gradient(circle at 71% 20%, rgba(184,171,146,.18), transparent 18%),
-    radial-gradient(circle at 50% 88%, rgba(100,17,17,.18), transparent 28%),
-    linear-gradient(90deg, rgba(3,3,2,.98) 0%, rgba(3,3,2,.91) 43%, rgba(3,3,2,.72) 100%),
-    radial-gradient(circle at 73% 52%, #242018, #050504 62%);
-}
-
-.site::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  z-index: -3;
-  background:
-    linear-gradient(180deg, transparent 0 55%, rgba(0,0,0,.9) 100%),
-    repeating-linear-gradient(90deg, rgba(255,255,255,.018) 0 1px, transparent 1px 7px),
-    repeating-linear-gradient(0deg, rgba(255,255,255,.012) 0 1px, transparent 1px 5px);
-  opacity: .8;
-}
-
-.site::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  z-index: -2;
-  pointer-events: none;
-  background:
-    radial-gradient(circle at center, transparent 0 48%, rgba(0,0,0,.72) 88%),
-    linear-gradient(90deg, rgba(0,0,0,.55), transparent 22%, transparent 78%, rgba(0,0,0,.55));
-}
-
-.noise {
-  position: fixed;
-  inset: 0;
-  pointer-events: none;
-  z-index: 50;
-  opacity: .14;
-  background-image:
-    radial-gradient(circle, rgba(255,255,255,.45) 0 1px, transparent 1px);
-  background-size: 3px 3px;
-  mix-blend-mode: overlay;
-}
-
-.frame {
-  position: fixed;
-  inset: 18px;
-  z-index: 40;
-  pointer-events: none;
-  border: 1px solid rgba(184,171,146,.17);
-  box-shadow:
-    inset 0 0 120px rgba(0,0,0,.96),
-    0 0 60px rgba(0,0,0,.9);
-}
-
-.frame::before,
-.frame::after {
-  content: "ᛟ ᛉ ᛞ ᚱ ᛟ ᛉ ᛞ ᚱ ᛟ ᛉ ᛞ ᚱ ᛟ";
-  position: absolute;
-  top: 24px;
-  bottom: 24px;
-  width: 22px;
-  writing-mode: vertical-rl;
-  text-orientation: mixed;
-  letter-spacing: 12px;
-  color: rgba(184,171,146,.18);
-  font-size: 17px;
-}
-
-.frame::before {
-  left: 18px;
-}
-
-.frame::after {
-  right: 18px;
-}
-
-.nav {
-  display: flex;
-  justify-content: center;
-  gap: clamp(32px, 8vw, 128px);
-  font-size: 13px;
-  letter-spacing: .48em;
-  text-transform: uppercase;
-  color: var(--bone-soft);
-}
-
-.hero {
-  position: relative;
-  display: grid;
-  grid-template-columns: minmax(330px, 510px) 1fr;
-  align-items: center;
-  gap: clamp(28px, 7vw, 120px);
-  min-height: calc(100vh - 150px);
-  padding: 52px 0 38px;
-}
-
-.left {
-  position: relative;
-  z-index: 5;
-  padding-left: clamp(0px, 4vw, 54px);
-}
-
-.logo {
-  width: min(420px, 82vw);
-  margin-bottom: 52px;
-  color: var(--bone);
-  filter:
-    sepia(.22)
-    saturate(.7)
-    brightness(.88)
-    contrast(1.16)
-    drop-shadow(0 0 28px rgba(184,171,146,.08));
-}
-
-.logo-title {
-  font-family: Impact, "Arial Black", serif;
-  font-size: 86px;
-  line-height: .82;
-  letter-spacing: .02em;
-  text-transform: uppercase;
-  fill: currentColor;
-  stroke: rgba(0,0,0,.35);
-  stroke-width: 1.5px;
-}
-
-.logo-cross {
-  stroke: currentColor;
-  stroke-width: 4;
-  opacity: .9;
-}
-
-.domain {
-  margin: 0;
-  font-size: clamp(38px, 5vw, 76px);
-  line-height: .9;
-  letter-spacing: .24em;
-  font-weight: 400;
-  text-transform: uppercase;
-  color: var(--bone);
-  text-shadow: 0 0 28px rgba(184,171,146,.12);
-}
-
-.separator {
-  width: min(390px, 80%);
-  height: 1px;
-  margin: 30px 0 34px;
-  background:
-    linear-gradient(90deg, transparent, rgba(184,171,146,.58), transparent);
-  position: relative;
-}
-
-.separator::after {
-  content: "ᛟ";
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  translate: -50% -50%;
-  color: var(--bone-dim);
-  background: var(--black);
-  padding: 0 12px;
-  font-size: 17px;
-}
-
-.coming {
-  margin: 0 0 30px;
-  font-size: clamp(20px, 2vw, 34px);
-  letter-spacing: .72em;
-  text-transform: uppercase;
-  color: var(--bone);
-}
-
-.mark {
-  margin: 0 0 28px;
-  color: var(--red);
-  font-size: 30px;
-  letter-spacing: .2em;
-}
-
-.subline {
-  margin: 0;
-  max-width: 410px;
-  font-size: 17px;
-  line-height: 1.9;
-  letter-spacing: .44em;
-  text-transform: uppercase;
-  color: var(--bone-soft);
-}
-
-.subscribe {
-  width: min(420px, 100%);
-  margin-top: 46px;
-  padding: 22px 24px;
-  display: grid;
-  grid-template-columns: 82px 1fr;
-  gap: 18px;
-  border: 1px solid rgba(184,171,146,.18);
-  background: rgba(0,0,0,.28);
-  box-shadow: inset 0 0 36px rgba(0,0,0,.7);
-}
-
-.raven {
-  font-size: 56px;
-  line-height: 1;
-  color: var(--bone-dim);
-  filter: grayscale(1);
-}
-
-.subscribe-title {
-  margin: 0 0 8px;
-  font-size: 15px;
-  letter-spacing: .34em;
-  text-transform: uppercase;
-}
-
-.subscribe-text {
-  margin: 0 0 18px;
-  color: var(--bone-soft);
-  font-size: 14px;
-  line-height: 1.65;
-  letter-spacing: .08em;
-}
-
-.email {
-  display: flex;
-  border: 1px solid rgba(184,171,146,.18);
-  height: 38px;
-}
-
-.email input {
-  flex: 1;
-  min-width: 0;
-  background: transparent;
-  border: 0;
-  padding: 0 12px;
-  color: var(--bone);
-  font: inherit;
-  outline: none;
-}
-
-.email input::placeholder {
-  color: rgba(184,171,146,.38);
-}
-
-.email button {
-  width: 48px;
-  border: 0;
-  border-left: 1px solid rgba(184,171,146,.18);
-  background: transparent;
-  color: var(--bone-soft);
-  cursor: pointer;
-  font-size: 22px;
-}
-
-.socials {
-  display: flex;
-  gap: 16px;
-  margin-top: 28px;
-}
-
-.socials a {
-  width: 45px;
-  height: 45px;
-  display: grid;
-  place-items: center;
-  border: 1px solid rgba(184,171,146,.2);
-  color: var(--bone-soft);
-  text-decoration: none;
-  background: rgba(0,0,0,.2);
-  transition: .22s ease;
-}
-
-.socials a:hover {
-  color: var(--bone);
-  border-color: rgba(184,171,146,.55);
-}
-
-.scene {
-  position: relative;
-  min-height: 680px;
-  z-index: 2;
-}
-
-.moon {
-  position: absolute;
-  right: 26%;
-  top: 2%;
-  width: 132px;
-  height: 132px;
-  border-radius: 50%;
-  background:
-    radial-gradient(circle at 42% 36%, #c9bea2 0 14%, #7e7461 36%, #221f1a 65%, transparent 68%);
-  opacity: .56;
-  box-shadow: 0 0 76px rgba(184,171,146,.22);
-}
-
-.forest {
-  position: absolute;
-  inset: 4% 0 0;
-  background:
-    linear-gradient(to top, rgba(0,0,0,.96), transparent 45%),
-    repeating-linear-gradient(90deg, transparent 0 34px, rgba(184,171,146,.08) 35px 36px, transparent 37px 70px);
-  clip-path: polygon(0 100%, 0 35%, 5% 46%, 8% 28%, 12% 52%, 16% 22%, 20% 56%, 25% 30%, 30% 58%, 34% 25%, 39% 53%, 44% 18%, 50% 48%, 57% 26%, 63% 54%, 69% 24%, 76% 50%, 82% 18%, 88% 49%, 93% 30%, 100% 44%, 100% 100%);
-  opacity: .36;
-}
-
-.hut {
-  position: absolute;
-  right: 7%;
-  top: 17%;
-  width: min(510px, 48vw);
-  height: 480px;
-  filter: drop-shadow(0 0 44px rgba(0,0,0,.95));
-  transform: rotate(-2deg);
-}
-
-.hut-roof {
-  position: absolute;
-  left: 12%;
-  top: 0;
-  width: 80%;
-  height: 178px;
-  background:
-    linear-gradient(135deg, transparent 0 50%, rgba(184,171,146,.12) 51% 52%, transparent 53%),
-    linear-gradient(45deg, transparent 0 50%, rgba(184,171,146,.1) 51% 52%, transparent 53%),
-    #16120e;
-  clip-path: polygon(50% 0, 100% 100%, 0 100%);
-  border-bottom: 1px solid rgba(184,171,146,.18);
-}
-
-.hut-body {
-  position: absolute;
-  left: 24%;
-  top: 166px;
-  width: 54%;
-  height: 232px;
-  background:
-    repeating-linear-gradient(0deg, rgba(184,171,146,.08) 0 2px, transparent 2px 25px),
-    repeating-linear-gradient(90deg, rgba(184,171,146,.08) 0 2px, transparent 2px 34px),
-    #0d0b09;
-  border: 1px solid rgba(184,171,146,.14);
-  box-shadow: inset 0 0 60px rgba(0,0,0,.88);
-}
-
-.hut-window {
-  position: absolute;
-  left: 41%;
-  top: 228px;
-  width: 72px;
-  height: 82px;
-  border: 1px solid rgba(184,171,146,.25);
-  background: radial-gradient(circle, rgba(120,25,12,.18), rgba(0,0,0,.88) 62%);
-  box-shadow: inset 0 0 24px rgba(184,171,146,.06);
-}
-
-.hut-cross {
-  position: absolute;
-  left: 47%;
-  top: -12px;
-  width: 68px;
-  height: 68px;
-}
-
-.hut-cross::before,
-.hut-cross::after {
-  content: "";
-  position: absolute;
-  background: rgba(184,171,146,.32);
-}
-
-.hut-cross::before {
-  left: 31px;
-  top: 0;
-  width: 6px;
-  height: 68px;
-}
-
-.hut-cross::after {
-  left: 0;
-  top: 31px;
-  width: 68px;
-  height: 6px;
-}
-
-.idol {
-  position: absolute;
-  right: 3%;
-  bottom: 5%;
-  width: 280px;
-  height: 420px;
-  opacity: .88;
-}
-
-.idol-head {
-  position: absolute;
-  left: 92px;
-  top: 0;
-  width: 92px;
-  height: 112px;
-  border: 2px solid rgba(184,171,146,.34);
-  border-radius: 45% 45% 38% 38%;
-  background:
-    radial-gradient(circle at 34% 42%, rgba(184,171,146,.44) 0 6px, transparent 7px),
-    radial-gradient(circle at 66% 42%, rgba(184,171,146,.44) 0 6px, transparent 7px),
-    linear-gradient(90deg, transparent 46%, rgba(184,171,146,.28) 47% 52%, transparent 53%),
-    #0b0908;
-}
-
-.idol-horns::before,
-.idol-horns::after {
-  content: "";
-  position: absolute;
-  top: -22px;
-  width: 88px;
-  height: 64px;
-  border-top: 3px solid rgba(184,171,146,.34);
-  border-radius: 50%;
-}
-
-.idol-horns::before {
-  left: 8px;
-  transform: rotate(-28deg);
-}
-
-.idol-horns::after {
-  right: 8px;
-  transform: rotate(28deg);
-}
-
-.idol-body {
-  position: absolute;
-  left: 60px;
-  top: 106px;
-  width: 158px;
-  height: 290px;
-  background:
-    linear-gradient(90deg, transparent 0 47%, rgba(184,171,146,.18) 48% 51%, transparent 52%),
-    #0d0a08;
-  clip-path: polygon(50% 0, 70% 10%, 100% 100%, 0 100%, 30% 10%);
-  border: 1px solid rgba(184,171,146,.12);
-}
-
-.idol-arms {
-  position: absolute;
-  left: 10px;
-  top: 145px;
-  width: 260px;
-  height: 20px;
-  background: rgba(184,171,146,.16);
-  transform: rotate(-4deg);
-}
-
-.ritual {
-  position: absolute;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  height: 210px;
-  background:
-    radial-gradient(ellipse at 48% 72%, rgba(184,171,146,.15), transparent 30%),
-    linear-gradient(transparent, rgba(0,0,0,.92) 78%);
-}
-
-.stakes {
-  position: absolute;
-  left: 2%;
-  right: 6%;
-  bottom: 48px;
-  height: 120px;
-  background:
-    repeating-linear-gradient(90deg, transparent 0 32px, rgba(184,171,146,.13) 33px 40px, transparent 41px 60px);
-  clip-path: polygon(0 100%, 0 55%, 4% 20%, 8% 60%, 12% 0, 16% 62%, 22% 18%, 26% 72%, 31% 8%, 38% 64%, 45% 16%, 50% 70%, 58% 10%, 64% 64%, 72% 18%, 78% 72%, 86% 4%, 92% 62%, 100% 24%, 100% 100%);
-  opacity: .65;
-}
-
-.candles {
-  position: absolute;
-  left: 24%;
-  bottom: 28px;
-  width: 260px;
-  height: 90px;
-}
-
-.candles span {
-  position: absolute;
-  bottom: 0;
-  width: 10px;
-  height: 42px;
-  background: rgba(184,171,146,.18);
-}
-
-.candles span::before {
-  content: "";
-  position: absolute;
-  left: 50%;
-  top: -16px;
-  width: 10px;
-  height: 20px;
-  translate: -50% 0;
-  border-radius: 50% 50% 50% 50%;
-  background: rgba(184,171,146,.7);
-  box-shadow: 0 0 24px rgba(184,171,146,.36);
-}
-
-.candles span:nth-child(1) { left: 0; height: 26px; }
-.candles span:nth-child(2) { left: 70px; height: 50px; }
-.candles span:nth-child(3) { left: 142px; height: 34px; }
-.candles span:nth-child(4) { left: 218px; height: 44px; }
-
-.footer {
-  position: relative;
-  z-index: 5;
-  text-align: center;
-  padding-top: 22px;
-  color: var(--bone-soft);
-  font-size: clamp(11px, 1.15vw, 15px);
-  letter-spacing: .38em;
-  text-transform: uppercase;
-}
-
-.footer::before,
-.footer::after {
-  content: "";
-  display: inline-block;
-  width: min(210px, 16vw);
-  height: 1px;
-  margin: 0 24px .35em;
-  background: linear-gradient(90deg, transparent, rgba(184,171,146,.34));
-}
-
-.footer::after {
-  background: linear-gradient(90deg, rgba(184,171,146,.34), transparent);
-}
-
-@media (max-width: 980px) {
-  .hero {
-    grid-template-columns: 1fr;
-    min-height: auto;
-  }
-
-  .scene {
-    order: -1;
-    min-height: 460px;
-  }
-
-  .hut {
-    width: 520px;
-    max-width: 82vw;
-  }
-
-  .left {
-    padding-left: 0;
-  }
-
-  .domain {
-    letter-spacing: .14em;
-  }
-
-  .coming {
-    letter-spacing: .42em;
-  }
-
-  .subscribe {
-    grid-template-columns: 1fr;
-  }
-}
-
-@media (max-width: 640px) {
-  .site {
-    padding: 30px 22px 28px;
-  }
-
-  .frame {
-    inset: 10px;
-  }
-
-  .frame::before,
-  .frame::after {
-    display: none;
-  }
-
-  .nav {
-    gap: 16px;
-    font-size: 10px;
-    letter-spacing: .22em;
-  }
-
-  .scene {
-    min-height: 390px;
-  }
-
-  .moon {
-    width: 86px;
-    height: 86px;
-    right: 22%;
-  }
-
-  .idol {
-    scale: .72;
-    transform-origin: right bottom;
-  }
-
-  .footer {
-    letter-spacing: .18em;
-    line-height: 1.8;
-  }
-
-  .footer::before,
-  .footer::after {
-    display: none;
-  }
-}
-</style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Black Izba — Coming Soon</title>
+
+  <style>
+    :root {
+      --black: #030302;
+      --void: #070605;
+      --bone: #b8ab92;
+      --bone-soft: #8e826e;
+      --bone-dim: #514a3e;
+      --ash: #171411;
+      --red: #641111;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html,
+    body {
+      margin: 0;
+      min-height: 100%;
+      background: var(--black);
+      color: var(--bone);
+      font-family: Georgia, "Times New Roman", serif;
+    }
+
+    body {
+      overflow-x: hidden;
+    }
+
+    .site {
+      position: relative;
+      min-height: 100vh;
+      padding: 42px clamp(24px, 5vw, 76px) 34px;
+      display: grid;
+      grid-template-rows: auto 1fr auto;
+      isolation: isolate;
+      background:
+        radial-gradient(circle at 71% 20%, rgba(184, 171, 146, .18), transparent 18%),
+        radial-gradient(circle at 50% 88%, rgba(100, 17, 17, .18), transparent 28%),
+        linear-gradient(90deg, rgba(3, 3, 2, .98) 0%, rgba(3, 3, 2, .91) 43%, rgba(3, 3, 2, .72) 100%),
+        radial-gradient(circle at 73% 52%, #242018, #050504 62%);
+    }
+
+    .site::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      z-index: -3;
+      background:
+        linear-gradient(180deg, transparent 0 55%, rgba(0, 0, 0, .9) 100%),
+        repeating-linear-gradient(90deg, rgba(255, 255, 255, .018) 0 1px, transparent 1px 7px),
+        repeating-linear-gradient(0deg, rgba(255, 255, 255, .012) 0 1px, transparent 1px 5px);
+      opacity: .8;
+    }
+
+    .site::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      z-index: -2;
+      pointer-events: none;
+      background:
+        radial-gradient(circle at center, transparent 0 48%, rgba(0, 0, 0, .72) 88%),
+        linear-gradient(90deg, rgba(0, 0, 0, .55), transparent 22%, transparent 78%, rgba(0, 0, 0, .55));
+    }
+
+    .noise {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 50;
+      opacity: .14;
+      background-image: radial-gradient(circle, rgba(255, 255, 255, .45) 0 1px, transparent 1px);
+      background-size: 3px 3px;
+      mix-blend-mode: overlay;
+    }
+
+    .frame {
+      position: fixed;
+      inset: 18px;
+      z-index: 40;
+      pointer-events: none;
+      border: 1px solid rgba(184, 171, 146, .17);
+      box-shadow: inset 0 0 120px rgba(0, 0, 0, .96), 0 0 60px rgba(0, 0, 0, .9);
+    }
+
+    .frame::before,
+    .frame::after {
+      content: "ᛟ ᛉ ᛞ ᚱ ᛟ ᛉ ᛞ ᚱ ᛟ ᛉ ᛞ ᚱ ᛟ";
+      position: absolute;
+      top: 24px;
+      bottom: 24px;
+      width: 22px;
+      writing-mode: vertical-rl;
+      text-orientation: mixed;
+      letter-spacing: 12px;
+      color: rgba(184, 171, 146, .18);
+      font-size: 17px;
+    }
+
+    .frame::before {
+      left: 18px;
+    }
+
+    .frame::after {
+      right: 18px;
+    }
+
+    .nav {
+      display: flex;
+      justify-content: center;
+      gap: clamp(32px, 8vw, 128px);
+      font-size: 13px;
+      letter-spacing: .48em;
+      text-transform: uppercase;
+      color: var(--bone-soft);
+    }
+
+    .hero {
+      position: relative;
+      display: grid;
+      grid-template-columns: minmax(330px, 510px) 1fr;
+      align-items: center;
+      gap: clamp(28px, 7vw, 120px);
+      min-height: calc(100vh - 150px);
+      padding: 52px 0 38px;
+    }
+
+    .left {
+      position: relative;
+      z-index: 5;
+      padding-left: clamp(0px, 4vw, 54px);
+    }
+
+    .logo {
+      width: min(330px, 70vw);
+      margin-bottom: 46px;
+      color: var(--bone);
+      opacity: .78;
+      filter: sepia(.35) saturate(.6) brightness(.74) contrast(1.24) drop-shadow(0 0 24px rgba(184, 171, 146, .08));
+    }
+
+    .logo-title {
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 82px;
+      line-height: .82;
+      letter-spacing: .04em;
+      text-transform: uppercase;
+      fill: currentColor;
+      stroke: rgba(0, 0, 0, .7);
+      stroke-width: 2px;
+    }
+
+    .logo-cross {
+      stroke: currentColor;
+      stroke-width: 4;
+      opacity: .9;
+    }
+
+    .domain {
+      margin: 0;
+      font-size: clamp(38px, 5vw, 76px);
+      line-height: .9;
+      letter-spacing: .24em;
+      font-weight: 400;
+      text-transform: uppercase;
+      color: var(--bone);
+      text-shadow: 0 0 28px rgba(184, 171, 146, .12);
+    }
+
+    .separator {
+      width: min(390px, 80%);
+      height: 1px;
+      margin: 30px 0 34px;
+      background: linear-gradient(90deg, transparent, rgba(184, 171, 146, .58), transparent);
+      position: relative;
+    }
+
+    .separator::after {
+      content: "ᛟ";
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      translate: -50% -50%;
+      color: var(--bone-dim);
+      background: var(--black);
+      padding: 0 12px;
+      font-size: 17px;
+    }
+
+    .coming {
+      margin: 0 0 30px;
+      font-size: clamp(20px, 2vw, 34px);
+      letter-spacing: .72em;
+      text-transform: uppercase;
+      color: var(--bone);
+    }
+
+    .mark {
+      margin: 0 0 28px;
+      color: var(--red);
+      font-size: 30px;
+      letter-spacing: .2em;
+    }
+
+    .subline {
+      margin: 0;
+      max-width: 410px;
+      font-size: 17px;
+      line-height: 1.9;
+      letter-spacing: .44em;
+      text-transform: uppercase;
+      color: var(--bone-soft);
+    }
+
+    .subscribe {
+      width: min(420px, 100%);
+      margin-top: 46px;
+      padding: 22px 24px;
+      display: grid;
+      grid-template-columns: 82px 1fr;
+      gap: 18px;
+      border: 1px solid rgba(184, 171, 146, .18);
+      background: rgba(0, 0, 0, .28);
+      box-shadow: inset 0 0 36px rgba(0, 0, 0, .7);
+    }
+
+    .raven {
+      font-size: 56px;
+      line-height: 1;
+      color: var(--bone-dim);
+      filter: grayscale(1);
+    }
+
+    .subscribe-title {
+      margin: 0 0 8px;
+      font-size: 15px;
+      letter-spacing: .34em;
+      text-transform: uppercase;
+    }
+
+    .subscribe-text {
+      margin: 0 0 18px;
+      color: var(--bone-soft);
+      font-size: 14px;
+      line-height: 1.65;
+      letter-spacing: .08em;
+    }
+
+    .email {
+      display: flex;
+      border: 1px solid rgba(184, 171, 146, .18);
+      height: 38px;
+    }
+
+    .email input {
+      flex: 1;
+      min-width: 0;
+      background: transparent;
+      border: 0;
+      padding: 0 12px;
+      color: var(--bone);
+      font: inherit;
+      outline: none;
+    }
+
+    .email input::placeholder {
+      color: rgba(184, 171, 146, .38);
+    }
+
+    .email button {
+      width: 48px;
+      border: 0;
+      border-left: 1px solid rgba(184, 171, 146, .18);
+      background: transparent;
+      color: var(--bone-soft);
+      cursor: pointer;
+      font-size: 22px;
+    }
+
+    .socials {
+      display: flex;
+      gap: 16px;
+      margin-top: 28px;
+    }
+
+    .socials a {
+      width: 45px;
+      height: 45px;
+      display: grid;
+      place-items: center;
+      border: 1px solid rgba(184, 171, 146, .2);
+      color: var(--bone-soft);
+      text-decoration: none;
+      background: rgba(0, 0, 0, .2);
+      transition: .22s ease;
+    }
+
+    .socials a:hover {
+      color: var(--bone);
+      border-color: rgba(184, 171, 146, .55);
+    }
+
+    .scene {
+      position: relative;
+      min-height: 720px;
+      z-index: 2;
+      overflow: hidden;
+      opacity: .92;
+      filter: contrast(1.08) brightness(.72) saturate(.65);
+    }
+
+    .black-sun {
+      position: absolute;
+      right: 18%;
+      top: 7%;
+      width: 170px;
+      height: 170px;
+      border-radius: 50%;
+      background: radial-gradient(circle at 43% 38%, #b9ae95 0 12%, #6e6656 34%, #17130f 64%, transparent 68%);
+      opacity: .38;
+      box-shadow: 0 0 110px rgba(184, 171, 146, .18), 0 0 220px rgba(184, 171, 146, .07);
+    }
+
+    .mist {
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse at 58% 42%, rgba(184, 171, 146, .12), transparent 34%),
+        radial-gradient(ellipse at 75% 72%, rgba(90, 18, 12, .14), transparent 28%),
+        linear-gradient(90deg, transparent, rgba(184, 171, 146, .05), transparent);
+      filter: blur(8px);
+    }
+
+    .dead-forest {
+      position: absolute;
+      inset: 0;
+      opacity: .55;
+      background: repeating-linear-gradient(90deg, transparent 0 38px, rgba(184, 171, 146, .08) 39px 41px, transparent 42px 76px);
+      clip-path: polygon(0 100%, 0 42%, 3% 52%, 6% 27%, 10% 58%, 14% 20%, 18% 61%, 23% 30%, 29% 64%, 34% 18%, 40% 60%, 47% 26%, 55% 62%, 62% 22%, 70% 60%, 77% 28%, 84% 64%, 90% 18%, 96% 52%, 100% 36%, 100% 100%);
+    }
+
+    .izba {
+      position: absolute;
+      right: 9%;
+      top: 24%;
+      width: min(520px, 46vw);
+      height: 440px;
+      transform: rotate(-3deg);
+      filter: drop-shadow(0 0 60px rgba(0, 0, 0, .95)) drop-shadow(0 0 22px rgba(184, 171, 146, .05));
+    }
+
+    .roof {
+      position: absolute;
+      left: 4%;
+      top: 0;
+      width: 92%;
+      height: 190px;
+      background:
+        repeating-linear-gradient(160deg, rgba(184, 171, 146, .13) 0 2px, transparent 2px 13px),
+        linear-gradient(180deg, #1b1712, #080706);
+      clip-path: polygon(50% 0, 100% 100%, 0 100%);
+      border-bottom: 1px solid rgba(184, 171, 146, .18);
+    }
+
+    .roof::before {
+      content: "";
+      position: absolute;
+      left: 48%;
+      top: -16px;
+      width: 48px;
+      height: 48px;
+      border-left: 5px solid rgba(184, 171, 146, .28);
+      border-right: 5px solid rgba(184, 171, 146, .28);
+      transform: rotate(45deg);
+    }
+
+    .walls {
+      position: absolute;
+      left: 22%;
+      top: 172px;
+      width: 58%;
+      height: 210px;
+      background:
+        repeating-linear-gradient(0deg, rgba(184, 171, 146, .08) 0 2px, transparent 2px 24px),
+        repeating-linear-gradient(90deg, rgba(184, 171, 146, .055) 0 1px, transparent 1px 31px),
+        #080706;
+      border: 1px solid rgba(184, 171, 146, .13);
+      box-shadow: inset 0 0 70px rgba(0, 0, 0, .95), 0 0 40px rgba(0, 0, 0, .8);
+    }
+
+    .window {
+      position: absolute;
+      left: 43%;
+      top: 245px;
+      width: 76px;
+      height: 86px;
+      border: 1px solid rgba(184, 171, 146, .24);
+      background: radial-gradient(circle at 50% 55%, rgba(116, 23, 13, .5), rgba(20, 5, 3, .72) 38%, rgba(0, 0, 0, .96) 70%);
+      box-shadow: 0 0 26px rgba(90, 18, 12, .22), inset 0 0 24px rgba(0, 0, 0, .9);
+    }
+
+    .window::before,
+    .window::after {
+      content: "";
+      position: absolute;
+      background: rgba(184, 171, 146, .13);
+    }
+
+    .window::before {
+      left: 50%;
+      top: 0;
+      width: 1px;
+      height: 100%;
+    }
+
+    .window::after {
+      left: 0;
+      top: 50%;
+      width: 100%;
+      height: 1px;
+    }
+
+    .legs {
+      position: absolute;
+      left: 31%;
+      bottom: 0;
+      width: 210px;
+      height: 90px;
+      background:
+        linear-gradient(75deg, transparent 0 28%, rgba(184, 171, 146, .13) 29% 35%, transparent 36%),
+        linear-gradient(110deg, transparent 0 58%, rgba(184, 171, 146, .12) 59% 65%, transparent 66%);
+      opacity: .65;
+    }
+
+    .spirit {
+      position: absolute;
+      right: 3%;
+      bottom: 3%;
+      width: 260px;
+      height: 440px;
+      opacity: .82;
+      filter: drop-shadow(0 0 30px rgba(0, 0, 0, .9));
+    }
+
+    .skull {
+      position: absolute;
+      left: 74px;
+      top: 36px;
+      width: 104px;
+      height: 126px;
+      border: 2px solid rgba(184, 171, 146, .32);
+      border-radius: 48% 48% 42% 42%;
+      background:
+        radial-gradient(circle at 35% 42%, rgba(184, 171, 146, .45) 0 6px, transparent 7px),
+        radial-gradient(circle at 65% 42%, rgba(184, 171, 146, .45) 0 6px, transparent 7px),
+        linear-gradient(90deg, transparent 48%, rgba(184, 171, 146, .22) 49% 51%, transparent 52%),
+        #070605;
+    }
+
+    .horns::before,
+    .horns::after {
+      content: "";
+      position: absolute;
+      top: 0;
+      width: 120px;
+      height: 88px;
+      border-top: 3px solid rgba(184, 171, 146, .28);
+      border-radius: 50%;
+    }
+
+    .horns::before {
+      left: 0;
+      transform: rotate(-32deg);
+    }
+
+    .horns::after {
+      right: 2px;
+      transform: rotate(32deg);
+    }
+
+    .robe {
+      position: absolute;
+      left: 38px;
+      top: 150px;
+      width: 176px;
+      height: 270px;
+      background:
+        linear-gradient(90deg, transparent 0 48%, rgba(184, 171, 146, .18) 49% 51%, transparent 52%),
+        linear-gradient(180deg, #11100d, #040403);
+      clip-path: polygon(50% 0, 72% 12%, 100% 100%, 0 100%, 28% 12%);
+      border: 1px solid rgba(184, 171, 146, .1);
+    }
+
+    .staff {
+      position: absolute;
+      right: 22px;
+      top: 118px;
+      width: 8px;
+      height: 310px;
+      background: rgba(184, 171, 146, .18);
+      transform: rotate(-3deg);
+    }
+
+    .ritual-ground {
+      position: absolute;
+      left: 2%;
+      right: 2%;
+      bottom: 0;
+      height: 230px;
+      background:
+        radial-gradient(ellipse at 55% 72%, rgba(184, 171, 146, .16), transparent 28%),
+        radial-gradient(ellipse at 60% 94%, rgba(100, 17, 17, .2), transparent 34%),
+        linear-gradient(180deg, transparent, rgba(0, 0, 0, .96) 76%);
+    }
+
+    .ritual-ground::before {
+      content: "";
+      position: absolute;
+      left: 8%;
+      right: 8%;
+      bottom: 54px;
+      height: 130px;
+      background: repeating-linear-gradient(90deg, transparent 0 34px, rgba(184, 171, 146, .14) 35px 41px, transparent 42px 64px);
+      clip-path: polygon(0 100%, 0 65%, 4% 20%, 8% 70%, 13% 0, 18% 76%, 24% 18%, 30% 72%, 36% 6%, 43% 76%, 51% 22%, 57% 70%, 65% 8%, 73% 74%, 81% 18%, 88% 76%, 95% 10%, 100% 68%, 100% 100%);
+      opacity: .55;
+    }
+
+    .ritual-ground::after {
+      content: "";
+      position: absolute;
+      left: 34%;
+      bottom: 36px;
+      width: 220px;
+      height: 70px;
+      background:
+        radial-gradient(circle at 20% 60%, rgba(184, 171, 146, .65) 0 3px, transparent 4px),
+        radial-gradient(circle at 48% 40%, rgba(184, 171, 146, .62) 0 3px, transparent 4px),
+        radial-gradient(circle at 78% 62%, rgba(184, 171, 146, .55) 0 3px, transparent 4px);
+      box-shadow: 20px 0 26px rgba(184, 171, 146, .08), 80px 0 32px rgba(184, 171, 146, .06), 150px 0 28px rgba(184, 171, 146, .07);
+    }
+
+    .footer {
+      position: relative;
+      z-index: 5;
+      text-align: center;
+      padding-top: 22px;
+      color: var(--bone-soft);
+      font-size: clamp(11px, 1.15vw, 15px);
+      letter-spacing: .38em;
+      text-transform: uppercase;
+    }
+
+    .footer::before,
+    .footer::after {
+      content: "";
+      display: inline-block;
+      width: min(210px, 16vw);
+      height: 1px;
+      margin: 0 24px .35em;
+      background: linear-gradient(90deg, transparent, rgba(184, 171, 146, .34));
+    }
+
+    .footer::after {
+      background: linear-gradient(90deg, rgba(184, 171, 146, .34), transparent);
+    }
+
+    @media (max-width: 980px) {
+      .hero {
+        grid-template-columns: 1fr;
+        min-height: auto;
+      }
+
+      .scene {
+        order: -1;
+        min-height: 460px;
+      }
+
+      .izba {
+        width: 520px;
+        max-width: 82vw;
+      }
+
+      .left {
+        padding-left: 0;
+      }
+
+      .domain {
+        letter-spacing: .14em;
+      }
+
+      .coming {
+        letter-spacing: .42em;
+      }
+
+      .subscribe {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .site {
+        padding: 30px 22px 28px;
+      }
+
+      .frame {
+        inset: 10px;
+      }
+
+      .frame::before,
+      .frame::after {
+        display: none;
+      }
+
+      .nav {
+        gap: 16px;
+        font-size: 10px;
+        letter-spacing: .22em;
+      }
+
+      .scene {
+        min-height: 390px;
+      }
+
+      .black-sun {
+        width: 86px;
+        height: 86px;
+        right: 22%;
+      }
+
+      .spirit {
+        scale: .72;
+        transform-origin: right bottom;
+      }
+
+      .footer {
+        letter-spacing: .18em;
+        line-height: 1.8;
+      }
+
+      .footer::before,
+      .footer::after {
+        display: none;
+      }
+    }
+  </style>
 </head>
 
 <body>
@@ -667,11 +666,10 @@ body {
     <section class="hero">
       <div class="left">
         <svg class="logo" viewBox="0 0 720 390" role="img" aria-label="Black Izba logo">
-          <line class="logo-cross" x1="360" y1="18" x2="360" y2="78"/>
-          <line class="logo-cross" x1="330" y1="48" x2="390" y2="48"/>
-          <line class="logo-cross" x1="360" y1="312" x2="360" y2="372"/>
-          <line class="logo-cross" x1="330" y1="342" x2="390" y2="342"/>
-
+          <line class="logo-cross" x1="360" y1="18" x2="360" y2="78" />
+          <line class="logo-cross" x1="330" y1="48" x2="390" y2="48" />
+          <line class="logo-cross" x1="360" y1="312" x2="360" y2="372" />
+          <line class="logo-cross" x1="330" y1="342" x2="390" y2="342" />
           <text class="logo-title" x="50%" y="158" text-anchor="middle">BLACK</text>
           <text class="logo-title" x="50%" y="294" text-anchor="middle">IZBA</text>
         </svg>
@@ -685,7 +683,7 @@ body {
         <div class="mark">ᛟ</div>
 
         <p class="subline">
-          Something real<br>
+          Something real<br />
           is being born
         </p>
 
@@ -694,14 +692,14 @@ body {
           <div>
             <p class="subscribe-title">Stay in the dark</p>
             <p class="subscribe-text">Subscribe to get updates from the Blackizba.</p>
-            <form class="email">
+            <form class="email" action="#">
               <input type="email" placeholder="Your email" />
               <button type="submit" aria-label="Submit">→</button>
             </form>
           </div>
         </div>
 
-        <div class="socials">
+        <div class="socials" aria-label="Social links">
           <a href="#" aria-label="Instagram">◎</a>
           <a href="#" aria-label="VK">VK</a>
           <a href="#" aria-label="Telegram">↗</a>
@@ -710,32 +708,25 @@ body {
       </div>
 
       <div class="scene" aria-hidden="true">
-        <div class="moon"></div>
-        <div class="forest"></div>
+        <div class="black-sun"></div>
+        <div class="mist"></div>
+        <div class="dead-forest"></div>
 
-        <div class="hut">
-          <div class="hut-cross"></div>
-          <div class="hut-roof"></div>
-          <div class="hut-body"></div>
-          <div class="hut-window"></div>
+        <div class="izba">
+          <div class="roof"></div>
+          <div class="walls"></div>
+          <div class="window"></div>
+          <div class="legs"></div>
         </div>
 
-        <div class="idol">
-          <div class="idol-horns"></div>
-          <div class="idol-head"></div>
-          <div class="idol-arms"></div>
-          <div class="idol-body"></div>
+        <div class="spirit">
+          <div class="skull"></div>
+          <div class="horns"></div>
+          <div class="robe"></div>
+          <div class="staff"></div>
         </div>
 
-        <div class="ritual">
-          <div class="stakes"></div>
-          <div class="candles">
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
-          </div>
-        </div>
+        <div class="ritual-ground"></div>
       </div>
     </section>
 
