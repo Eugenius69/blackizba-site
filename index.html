@@ -1,23 +1,263 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-<meta charset="UTF-8">
-<title>Black Izba</title>
-<style>
-body {
-  background: black;
-  color: #e8e1d5;
-  font-family: Georgia, serif;
-  text-align: center;
-  padding-top: 15vh;
-}
-h1 { font-size: 72px; margin-bottom: 20px; }
-p { font-size: 24px; }
-</style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Black Izba — Slavic Folk Horror Apparel</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      background: #050505;
+      color: #d8c7a3;
+      font-family: Georgia, "Times New Roman", serif;
+    }
+
+    .page {
+      min-height: 100vh;
+      padding: 40px 24px;
+      background:
+        radial-gradient(circle at center, rgba(216, 199, 163, 0.08), transparent 45%),
+        linear-gradient(to bottom, #080808, #000);
+    }
+
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      max-width: 1100px;
+      margin: 0 auto 80px;
+      border-bottom: 1px solid rgba(216, 199, 163, 0.25);
+      padding-bottom: 20px;
+    }
+
+    .brand {
+      font-size: 28px;
+      letter-spacing: 4px;
+      font-weight: bold;
+    }
+
+    nav a {
+      color: #d8c7a3;
+      text-decoration: none;
+      margin-left: 24px;
+      font-size: 14px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      opacity: 0.8;
+    }
+
+    .hero {
+      max-width: 1100px;
+      margin: 0 auto;
+      text-align: center;
+      padding: 70px 0 90px;
+    }
+
+    .sigil {
+      width: 160px;
+      height: 160px;
+      border: 1px solid rgba(216, 199, 163, 0.5);
+      border-radius: 50%;
+      margin: 0 auto 36px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 76px;
+      opacity: 0.85;
+    }
+
+    h1 {
+      font-size: clamp(54px, 10vw, 130px);
+      margin: 0;
+      letter-spacing: 8px;
+      line-height: 0.9;
+      text-transform: uppercase;
+    }
+
+    .subtitle {
+      margin-top: 28px;
+      font-size: 22px;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+    }
+
+    .description {
+      max-width: 680px;
+      margin: 32px auto 0;
+      font-size: 20px;
+      line-height: 1.7;
+      color: #b8aa8c;
+    }
+
+    .buttons {
+      margin-top: 44px;
+      display: flex;
+      justify-content: center;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .button {
+      border: 1px solid #d8c7a3;
+      color: #d8c7a3;
+      padding: 14px 24px;
+      text-decoration: none;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      font-size: 13px;
+    }
+
+    .button:hover {
+      background: #d8c7a3;
+      color: #050505;
+    }
+
+    section {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 70px 0;
+      border-top: 1px solid rgba(216, 199, 163, 0.18);
+    }
+
+    h2 {
+      font-size: 34px;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      margin-bottom: 28px;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 18px;
+    }
+
+    .card {
+      border: 1px solid rgba(216, 199, 163, 0.28);
+      padding: 28px;
+      min-height: 160px;
+      background: rgba(255, 255, 255, 0.02);
+    }
+
+    .card h3 {
+      margin: 0 0 16px;
+      font-size: 22px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
+
+    .card p {
+      margin: 0;
+      color: #a99b80;
+      line-height: 1.5;
+    }
+
+    .bestiary {
+      font-size: 20px;
+      line-height: 1.7;
+      color: #b8aa8c;
+      max-width: 760px;
+    }
+
+    footer {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 40px 0 20px;
+      border-top: 1px solid rgba(216, 199, 163, 0.18);
+      color: #8f836d;
+      font-size: 14px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
+
+    @media (max-width: 700px) {
+      header {
+        flex-direction: column;
+        gap: 18px;
+      }
+
+      nav a {
+        margin: 0 8px;
+      }
+
+      .sigil {
+        width: 120px;
+        height: 120px;
+        font-size: 54px;
+      }
+    }
+  </style>
 </head>
+
 <body>
-<h1>BLACK IZBA</h1>
-<p>Slavic Folk Horror Apparel</p>
-<p>First Collection Coming Soon</p>
+  <div class="page">
+    <header>
+      <div class="brand">BLACK IZBA</div>
+      <nav>
+        <a href="#collection">Collection</a>
+        <a href="#bestiary">Bestiary</a>
+        <a href="mailto:hello@blackizba.com">Contact</a>
+      </nav>
+    </header>
+
+    <main class="hero">
+      <div class="sigil">☉</div>
+      <h1>Black Izba</h1>
+      <div class="subtitle">Slavic Folk Horror Apparel</div>
+      <p class="description">
+        Born from dark forests, old spirits, forgotten rituals and the creatures
+        that still walk beyond the firelight.
+      </p>
+
+      <div class="buttons">
+        <a class="button" href="mailto:hello@blackizba.com">Join the Black List</a>
+        <a class="button" href="#collection">First Collection</a>
+      </div>
+    </main>
+
+    <section id="collection">
+      <h2>First Collection</h2>
+      <div class="grid">
+        <div class="card">
+          <h3>Baba Yaga</h3>
+          <p>The witch of the deep forest and the house on chicken legs.</p>
+        </div>
+        <div class="card">
+          <h3>Koschei</h3>
+          <p>The deathless king whose secret waits inside the needle.</p>
+        </div>
+        <div class="card">
+          <h3>Leshy</h3>
+          <p>The old master of the woods, paths, beasts and whispers.</p>
+        </div>
+        <div class="card">
+          <h3>Poludnitsa</h3>
+          <p>The noon spirit of the fields, heat, silence and exhaustion.</p>
+        </div>
+        <div class="card">
+          <h3>Zmey Gorynych</h3>
+          <p>The three-headed serpent of fire, ruin and ancient fear.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="bestiary">
+      <h2>The Black Bestiary</h2>
+      <p class="bestiary">
+        Black Izba is a clothing project inspired by Slavic mythology, folk horror,
+        occult engraving, black metal graphics and the aesthetics of old village
+        nightmares. The first drop is being prepared.
+      </p>
+    </section>
+
+    <footer>
+      © 2026 Black Izba — Born under the sun, loyal to the shadows.
+    </footer>
+  </div>
 </body>
 </html>
