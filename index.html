@@ -4,125 +4,63 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Black Izba — Slavic Folk Horror Apparel</title>
-  <meta name="description" content="Black Izba — Slavic folk horror apparel inspired by old spirits, dark forests, occult engraving and black metal aesthetics." />
+  <meta name="description" content="Black Izba — minimalist Slavic folk horror apparel." />
 
   <style>
     :root {
-      --bg: #030201;
-      --bg2: #090705;
-      --ink: #c7ad77;
-      --ink2: #e0c995;
-      --muted: #8e7b55;
-      --dim: #51462f;
-      --line: rgba(199, 173, 119, 0.28);
-      --line2: rgba(199, 173, 119, 0.14);
-      --shadow: rgba(0, 0, 0, 0.86);
+      --bg: #000;
+      --ink: #f1f1f1;
+      --muted: #8f8f8f;
+      --line: rgba(255, 255, 255, 0.18);
+      --soft: rgba(255, 255, 255, 0.06);
     }
 
-    * { box-sizing: border-box; }
-    html { scroll-behavior: smooth; }
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
 
     body {
       margin: 0;
-      background: #000;
+      background: var(--bg);
       color: var(--ink);
-      font-family: Georgia, "Times New Roman", serif;
-      overflow-x: hidden;
+      font-family: "Georgia", "Times New Roman", serif;
+      letter-spacing: 0.02em;
     }
 
     body::before {
       content: "";
       position: fixed;
       inset: 0;
-      z-index: 0;
       pointer-events: none;
       background:
-        radial-gradient(circle at 50% 12%, rgba(199,173,119,0.13), transparent 30%),
-        radial-gradient(circle at 72% 62%, rgba(199,173,119,0.055), transparent 38%),
-        radial-gradient(circle at 20% 76%, rgba(199,173,119,0.06), transparent 32%),
-        linear-gradient(to bottom, #080604, #000 68%);
+        radial-gradient(circle at 50% 0%, rgba(255,255,255,0.06), transparent 34%),
+        linear-gradient(to bottom, rgba(255,255,255,0.025), transparent 28%);
+      z-index: 0;
     }
-
-    body::after {
-      content: "";
-      position: fixed;
-      inset: 0;
-      z-index: 1;
-      pointer-events: none;
-      opacity: .15;
-      background-image:
-        repeating-linear-gradient(0deg, rgba(255,255,255,.07) 0 1px, transparent 1px 5px),
-        repeating-radial-gradient(circle at 30% 20%, rgba(255,255,255,.48) 0 1px, transparent 1px 4px);
-      mix-blend-mode: overlay;
-    }
-
-    a { color: inherit; }
 
     .page {
       position: relative;
-      z-index: 2;
+      z-index: 1;
       min-height: 100vh;
-      padding: 26px;
+      padding: 32px;
     }
 
-    .outer-frame {
+    .frame {
       position: fixed;
-      inset: 18px;
+      inset: 20px;
       border: 1px solid var(--line);
       pointer-events: none;
-      z-index: 5;
-      box-shadow: inset 0 0 80px rgba(0,0,0,.72);
+      z-index: 2;
     }
-
-    .outer-frame::before,
-    .outer-frame::after {
-      content: "✦  ✧  ✦";
-      position: absolute;
-      left: 50%;
-      transform: translateX(-50%);
-      color: var(--ink);
-      background: #030201;
-      padding: 0 18px;
-      letter-spacing: 10px;
-      opacity: .7;
-      font-size: 13px;
-    }
-
-    .outer-frame::before { top: -9px; }
-    .outer-frame::after { bottom: -9px; }
-
-    .corner {
-      position: fixed;
-      z-index: 6;
-      width: 92px;
-      height: 92px;
-      pointer-events: none;
-      opacity: .78;
-    }
-
-    .corner::after {
-      content: "";
-      position: absolute;
-      width: 34px;
-      height: 34px;
-      border: 1px solid var(--ink);
-      transform: rotate(45deg);
-      opacity: .45;
-    }
-
-    .tl { top: 18px; left: 18px; border-top: 1px solid var(--ink); border-left: 1px solid var(--ink); }
-    .tr { top: 18px; right: 18px; border-top: 1px solid var(--ink); border-right: 1px solid var(--ink); }
-    .bl { bottom: 18px; left: 18px; border-bottom: 1px solid var(--ink); border-left: 1px solid var(--ink); }
-    .br { bottom: 18px; right: 18px; border-bottom: 1px solid var(--ink); border-right: 1px solid var(--ink); }
-    .tl::after { top: 18px; left: 18px; }
-    .tr::after { top: 18px; right: 18px; }
-    .bl::after { bottom: 18px; left: 18px; }
-    .br::after { bottom: 18px; right: 18px; }
 
     header {
-      max-width: 1180px;
+      max-width: 1120px;
       margin: 0 auto;
-      padding: 22px 0 24px;
+      padding: 20px 0 22px;
       display: flex;
       align-items: center;
       justify-content: space-between;
@@ -133,536 +71,285 @@
       display: flex;
       align-items: center;
       gap: 14px;
-      letter-spacing: 4px;
       text-transform: uppercase;
-      font-size: 20px;
-      font-weight: 700;
+      letter-spacing: 0.24em;
+      font-size: 15px;
     }
 
-    .brand-mark {
-      width: 38px;
-      height: 38px;
+    .mark {
+      width: 34px;
+      height: 34px;
       border: 1px solid var(--ink);
       display: grid;
       place-items: center;
-      transform: rotate(45deg);
-      background: rgba(199,173,119,.035);
-    }
-
-    .brand-mark span {
-      transform: rotate(-45deg);
-      font-size: 15px;
+      font-size: 12px;
     }
 
     nav {
       display: flex;
       gap: 26px;
       flex-wrap: wrap;
-      justify-content: flex-end;
     }
 
     nav a {
-      color: var(--ink);
+      color: var(--muted);
       text-decoration: none;
-      font-size: 12px;
-      letter-spacing: 2px;
       text-transform: uppercase;
-      opacity: .78;
+      letter-spacing: 0.18em;
+      font-size: 11px;
     }
 
-    nav a:hover { opacity: 1; color: var(--ink2); }
+    nav a:hover {
+      color: var(--ink);
+    }
 
     .hero {
-      max-width: 1180px;
+      max-width: 1120px;
       margin: 0 auto;
-      min-height: 82vh;
+      min-height: 78vh;
       display: grid;
-      grid-template-columns: 1.03fr .97fr;
-      gap: 54px;
+      grid-template-columns: 1fr 320px;
+      gap: 70px;
       align-items: center;
-      padding: 74px 0 104px;
-      position: relative;
+      padding: 72px 0;
     }
 
-    .hero::before {
-      content: "𖤐";
-      position: absolute;
-      left: 50%;
-      top: 62px;
-      transform: translateX(-50%);
-      color: rgba(199,173,119,.16);
-      font-size: 280px;
-      line-height: 1;
-      pointer-events: none;
-    }
-
-    .hero-kicker {
-      letter-spacing: 5px;
-      text-transform: uppercase;
+    .kicker {
       color: var(--muted);
-      font-size: 13px;
-      margin-bottom: 20px;
+      text-transform: uppercase;
+      letter-spacing: 0.32em;
+      font-size: 12px;
+      margin-bottom: 24px;
     }
 
     h1 {
       margin: 0;
+      font-family: "Old English Text MT", "UnifrakturMaguntia", "Cinzel Decorative", Georgia, serif;
+      font-size: clamp(64px, 12vw, 156px);
+      line-height: 0.82;
+      font-weight: 400;
+      letter-spacing: 0.03em;
       text-transform: uppercase;
-      letter-spacing: 9px;
-      font-size: clamp(60px, 10vw, 146px);
-      line-height: .86;
-      color: var(--ink2);
-      text-shadow:
-        0 0 24px rgba(199,173,119,.08),
-        0 10px 60px rgba(0,0,0,.8);
     }
 
     .subtitle {
-      margin-top: 30px;
-      font-size: clamp(18px, 2.2vw, 30px);
-      letter-spacing: 5px;
+      margin-top: 34px;
+      color: var(--ink);
       text-transform: uppercase;
+      letter-spacing: 0.26em;
+      font-size: clamp(14px, 2vw, 21px);
     }
 
     .description {
-      max-width: 710px;
+      max-width: 640px;
       margin: 28px 0 0;
       color: var(--muted);
-      font-size: 20px;
-      line-height: 1.85;
+      font-size: 18px;
+      line-height: 1.75;
     }
 
-    .hero-actions {
+    .actions {
       margin-top: 42px;
       display: flex;
-      gap: 16px;
+      gap: 14px;
       flex-wrap: wrap;
     }
 
     .button {
       color: var(--ink);
-      border: 1px solid var(--ink);
+      border: 1px solid var(--line);
+      padding: 14px 20px;
       text-decoration: none;
       text-transform: uppercase;
-      letter-spacing: 2px;
-      padding: 15px 22px;
-      font-size: 12px;
-      background: rgba(199,173,119,.03);
-      display: inline-block;
-      transition: 160ms ease;
+      letter-spacing: 0.16em;
+      font-size: 11px;
+      background: transparent;
     }
 
     .button:hover {
+      border-color: var(--ink);
       background: var(--ink);
-      color: #050403;
-      box-shadow: 0 0 34px rgba(199,173,119,.16);
+      color: var(--bg);
     }
 
-    .illustration {
-      position: relative;
-      min-height: 560px;
+    .sigil {
+      width: 320px;
+      height: 320px;
+      border: 1px solid var(--line);
+      border-radius: 50%;
       display: grid;
       place-items: center;
-      isolation: isolate;
+      position: relative;
+      opacity: 0.9;
     }
 
-    .moon {
-      position: absolute;
-      width: 420px;
-      height: 420px;
+    .sigil::before {
+      content: "";
+      width: 210px;
+      height: 210px;
       border: 1px solid var(--line);
       border-radius: 50%;
-      background:
-        radial-gradient(circle at 42% 36%, rgba(199,173,119,.18), transparent 8%),
-        radial-gradient(circle at 62% 58%, rgba(199,173,119,.12), transparent 11%),
-        radial-gradient(circle at center, rgba(199,173,119,.06), transparent 68%);
-      opacity: .64;
-      box-shadow:
-        inset 0 0 0 12px rgba(199,173,119,.012),
-        0 0 90px rgba(199,173,119,.05);
-    }
-
-    .moon::before {
-      content: "";
       position: absolute;
-      inset: 22px;
-      border: 1px solid rgba(199,173,119,.1);
-      border-radius: 50%;
     }
-
-    .dead-tree {
-      position: absolute;
-      bottom: 60px;
-      width: 2px;
-      height: 280px;
-      background: rgba(199,173,119,.45);
-      transform-origin: bottom;
-      opacity: .5;
-    }
-
-    .dead-tree.left { left: 10%; transform: rotate(-16deg); }
-    .dead-tree.right { right: 6%; transform: rotate(15deg); }
-
-    .dead-tree span {
-      position: absolute;
-      left: 0;
-      width: 76px;
-      height: 1px;
-      background: rgba(199,173,119,.45);
-      transform-origin: left;
-    }
-
-    .dead-tree span:nth-child(1) { top: 60px; transform: rotate(-38deg); }
-    .dead-tree span:nth-child(2) { top: 118px; transform: rotate(30deg); }
-    .dead-tree span:nth-child(3) { top: 174px; transform: rotate(-24deg); width: 54px; }
 
     .hut {
+      width: 130px;
+      height: 150px;
       position: relative;
-      z-index: 3;
-      width: 330px;
-      height: 350px;
-      filter:
-        drop-shadow(0 0 20px rgba(199,173,119,.06))
-        drop-shadow(0 22px 40px rgba(0,0,0,.85));
     }
 
-    .roof {
-      position: absolute;
-      top: 22px;
-      left: 44px;
-      width: 250px;
-      height: 136px;
-      border-left: 9px solid var(--ink);
-      border-top: 9px solid var(--ink);
-      transform: rotate(45deg);
-      opacity: .92;
-    }
-
-    .roof::before,
-    .roof::after {
-      content: "";
-      position: absolute;
-      background: rgba(199,173,119,.9);
-      height: 4px;
-      width: 116px;
-      left: -48px;
-      transform: rotate(-45deg);
-      opacity: .75;
-    }
-
-    .roof::before { top: 22px; }
-    .roof::after { top: 52px; width: 142px; opacity: .55; }
-
-    .house {
-      position: absolute;
-      top: 142px;
-      left: 60px;
-      width: 212px;
-      height: 126px;
-      border: 2px solid var(--ink);
-      background:
-        repeating-linear-gradient(0deg, transparent 0 13px, rgba(199,173,119,.25) 13px 15px),
-        linear-gradient(135deg, rgba(199,173,119,.09), transparent);
-      box-shadow: inset 0 0 22px rgba(0,0,0,.7);
-    }
-
-    .house::before,
-    .house::after {
-      content: "";
-      position: absolute;
-      top: 12px;
-      width: 18px;
-      height: 102px;
-      border-left: 2px solid var(--ink);
-      border-right: 2px solid var(--ink);
-      opacity: .55;
-    }
-
-    .house::before { left: 10px; }
-    .house::after { right: 10px; }
-
-    .window {
-      position: absolute;
-      top: 33px;
-      left: 84px;
-      width: 46px;
-      height: 48px;
-      border: 2px solid var(--ink2);
-      box-shadow: 0 0 24px rgba(199,173,119,.18);
-      background: rgba(199,173,119,.06);
-    }
-
-    .window::before,
-    .window::after {
-      content: "";
-      position: absolute;
-      background: var(--ink2);
-    }
-
-    .window::before { width: 100%; height: 1px; top: 50%; left: 0; }
-    .window::after { width: 1px; height: 100%; top: 0; left: 50%; }
-
-    .leg {
-      position: absolute;
-      width: 22px;
-      height: 114px;
-      top: 264px;
-      border-left: 3px solid var(--ink);
-      border-right: 3px solid var(--ink);
-      transform-origin: top;
-      background:
-        repeating-linear-gradient(0deg, transparent 0 16px, rgba(199,173,119,.24) 16px 18px);
-    }
-
-    .leg.left { left: 106px; transform: rotate(13deg); }
-    .leg.right { right: 106px; transform: rotate(-13deg); }
-
-    .claws {
-      position: absolute;
-      bottom: -19px;
-      left: -24px;
-      width: 70px;
-      height: 34px;
-      border-bottom: 3px solid var(--ink);
-      border-radius: 0 0 60% 60%;
-    }
-
-    .claws::before,
-    .claws::after {
-      content: "";
-      position: absolute;
-      bottom: 0;
-      width: 32px;
-      height: 19px;
-      border-bottom: 2px solid var(--ink);
-      border-radius: 0 0 50% 50%;
-    }
-
-    .claws::before { left: -10px; transform: rotate(-24deg); }
-    .claws::after { right: -10px; transform: rotate(24deg); }
-
-    .ground {
-      position: absolute;
-      bottom: 58px;
-      width: 78%;
-      height: 1px;
-      background: linear-gradient(to right, transparent, rgba(199,173,119,.45), transparent);
-      z-index: 1;
-    }
-
-    section {
-      max-width: 1180px;
-      margin: 0 auto;
-      padding: 90px 0;
-      border-top: 1px solid var(--line);
-    }
-
-    .section-title {
-      display: flex;
-      align-items: center;
-      gap: 16px;
-      margin-bottom: 36px;
-    }
-
-    .section-title::before,
-    .section-title::after {
-      content: "";
-      height: 1px;
-      flex: 1;
-      background: linear-gradient(to right, transparent, var(--line), transparent);
-    }
-
-    h2 {
-      margin: 0;
-      font-size: clamp(28px, 4vw, 48px);
-      text-transform: uppercase;
-      letter-spacing: 5px;
-      text-align: center;
-      color: var(--ink2);
-    }
-
-    .intro {
-      max-width: 820px;
-      margin: 0 auto 42px;
-      text-align: center;
-      color: var(--muted);
-      font-size: 19px;
-      line-height: 1.75;
-    }
-
-    .creature-grid {
-      display: grid;
-      grid-template-columns: repeat(5, 1fr);
-      gap: 16px;
-    }
-
-    .creature-card {
-      min-height: 290px;
-      border: 1px solid var(--line);
-      padding: 23px;
-      position: relative;
-      background:
-        radial-gradient(circle at 50% 0%, rgba(199,173,119,.08), transparent 48%),
-        linear-gradient(to bottom, rgba(199,173,119,.045), rgba(0,0,0,.22));
-      overflow: hidden;
-    }
-
-    .creature-card::before {
-      content: attr(data-number);
-      position: absolute;
-      right: 14px;
-      top: 8px;
-      font-size: 48px;
-      color: rgba(199,173,119,.06);
-      font-weight: bold;
-    }
-
-    .creature-card::after {
+    .hut::before {
       content: "";
       position: absolute;
       left: 22px;
-      right: 22px;
-      bottom: 22px;
-      height: 1px;
-      background: var(--line2);
+      top: 8px;
+      width: 86px;
+      height: 86px;
+      border-left: 4px solid var(--ink);
+      border-top: 4px solid var(--ink);
+      transform: rotate(45deg);
     }
 
-    .creature-symbol {
-      width: 56px;
-      height: 56px;
-      border: 1px solid var(--line);
-      display: grid;
-      place-items: center;
-      font-size: 31px;
-      margin-bottom: 28px;
-      opacity: .88;
-      background: rgba(0,0,0,.24);
-    }
-
-    .creature-card h3 {
-      margin: 0 0 14px;
-      font-size: 20px;
-      text-transform: uppercase;
-      letter-spacing: 2px;
-      color: var(--ink2);
-    }
-
-    .creature-card p {
-      margin: 0;
-      color: var(--muted);
-      line-height: 1.6;
-      font-size: 15px;
-    }
-
-    .manifesto {
-      display: grid;
-      grid-template-columns: .9fr 1.1fr;
-      gap: 38px;
-      align-items: stretch;
-    }
-
-    .manifesto-box {
-      border: 1px solid var(--line);
-      padding: 38px;
-      background:
-        radial-gradient(circle at 100% 0%, rgba(199,173,119,.08), transparent 42%),
-        rgba(199,173,119,.027);
-      position: relative;
-      overflow: hidden;
-    }
-
-    .manifesto-box::before {
-      content: "✶";
+    .hut-body {
       position: absolute;
-      right: 22px;
-      bottom: 12px;
-      color: rgba(199,173,119,.08);
-      font-size: 120px;
-    }
-
-    .manifesto-box.large {
-      font-size: 24px;
-      line-height: 1.65;
-      color: var(--ink2);
-    }
-
-    .manifesto-box p {
-      color: var(--muted);
-      line-height: 1.75;
-      margin: 0 0 18px;
-      font-size: 18px;
-    }
-
-    .runes {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 12px;
-      margin-top: 24px;
-      position: relative;
-      z-index: 1;
-    }
-
-    .rune {
-      border: 1px solid var(--line);
-      padding: 18px 8px;
-      text-align: center;
-      font-size: 26px;
-      color: var(--ink);
-      background: rgba(0,0,0,.28);
-    }
-
-    .black-list {
-      text-align: center;
-      padding: 88px 24px;
-      border: 1px solid var(--line);
+      left: 20px;
+      top: 70px;
+      width: 92px;
+      height: 54px;
+      border: 2px solid var(--ink);
       background:
-        radial-gradient(circle at center, rgba(199,173,119,.09), transparent 54%),
-        linear-gradient(to bottom, rgba(199,173,119,.035), rgba(0,0,0,.2));
-      position: relative;
-      overflow: hidden;
+        repeating-linear-gradient(0deg, transparent 0 9px, rgba(255,255,255,0.22) 9px 10px);
     }
 
-    .black-list::before {
-      content: "BLACK IZBA";
+    .hut-body::before {
+      content: "";
       position: absolute;
-      left: 50%;
-      top: 18px;
-      transform: translateX(-50%);
-      font-size: clamp(54px, 12vw, 140px);
-      letter-spacing: 12px;
-      color: rgba(199,173,119,.035);
-      white-space: nowrap;
-      pointer-events: none;
+      left: 35px;
+      top: 15px;
+      width: 20px;
+      height: 22px;
+      border: 1px solid var(--ink);
     }
 
-    .black-list h2 {
-      margin-bottom: 20px;
-      position: relative;
+    .leg {
+      position: absolute;
+      top: 122px;
+      width: 12px;
+      height: 48px;
+      border-left: 2px solid var(--ink);
+      border-right: 2px solid var(--ink);
     }
 
-    .black-list p {
-      max-width: 650px;
-      margin: 0 auto 34px;
-      color: var(--muted);
-      font-size: 19px;
-      line-height: 1.7;
-      position: relative;
+    .leg.left {
+      left: 38px;
+      transform: rotate(12deg);
     }
 
-    footer {
-      max-width: 1180px;
+    .leg.right {
+      right: 38px;
+      transform: rotate(-12deg);
+    }
+
+    .leg::after {
+      content: "";
+      position: absolute;
+      bottom: -7px;
+      left: -10px;
+      width: 30px;
+      height: 12px;
+      border-bottom: 2px solid var(--ink);
+      border-radius: 50%;
+    }
+
+    section {
+      max-width: 1120px;
       margin: 0 auto;
-      padding: 42px 0 24px;
-      color: var(--dim);
-      text-transform: uppercase;
-      letter-spacing: 2px;
-      font-size: 12px;
-      display: flex;
-      justify-content: space-between;
-      gap: 20px;
+      padding: 72px 0;
       border-top: 1px solid var(--line);
     }
 
-    @media (max-width: 980px) {
+    h2 {
+      margin: 0 0 28px;
+      font-family: "Old English Text MT", "UnifrakturMaguntia", "Cinzel Decorative", Georgia, serif;
+      font-weight: 400;
+      font-size: clamp(36px, 5vw, 68px);
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+
+    .section-text {
+      max-width: 760px;
+      color: var(--muted);
+      font-size: 18px;
+      line-height: 1.75;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 12px;
+      margin-top: 36px;
+    }
+
+    .card {
+      min-height: 190px;
+      border: 1px solid var(--line);
+      padding: 22px;
+      background: var(--soft);
+    }
+
+    .card-number {
+      color: var(--muted);
+      font-size: 12px;
+      letter-spacing: 0.18em;
+      margin-bottom: 36px;
+    }
+
+    .card h3 {
+      margin: 0 0 14px;
+      font-family: "Old English Text MT", "UnifrakturMaguntia", "Cinzel Decorative", Georgia, serif;
+      font-weight: 400;
+      font-size: 25px;
+      letter-spacing: 0.04em;
+    }
+
+    .card p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.55;
+    }
+
+    .join {
+      padding: 64px 24px;
+      border: 1px solid var(--line);
+      text-align: center;
+      background: rgba(255,255,255,0.025);
+    }
+
+    .join p {
+      max-width: 620px;
+      margin: 0 auto 30px;
+      color: var(--muted);
+      font-size: 17px;
+      line-height: 1.7;
+    }
+
+    footer {
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 34px 0 18px;
+      border-top: 1px solid var(--line);
+      display: flex;
+      justify-content: space-between;
+      gap: 20px;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      font-size: 11px;
+    }
+
+    @media (max-width: 900px) {
       .hero {
         grid-template-columns: 1fr;
         text-align: center;
@@ -673,152 +360,165 @@
         margin-right: auto;
       }
 
-      .hero-actions { justify-content: center; }
-      .creature-grid { grid-template-columns: repeat(2, 1fr); }
-      .manifesto { grid-template-columns: 1fr; }
+      .actions {
+        justify-content: center;
+      }
+
+      .sigil {
+        margin: 0 auto;
+      }
+
+      .grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
     }
 
-    @media (max-width: 620px) {
-      .page { padding: 22px; }
-      header { flex-direction: column; gap: 18px; }
-      nav { justify-content: center; gap: 16px; }
-      .illustration { min-height: 390px; }
-      .moon { width: 290px; height: 290px; }
-      .hut { transform: scale(.76); }
-      .dead-tree { opacity: .26; }
-      .creature-grid { grid-template-columns: 1fr; }
-      footer { flex-direction: column; text-align: center; }
+    @media (max-width: 560px) {
+      .page {
+        padding: 24px;
+      }
+
+      .frame {
+        inset: 12px;
+      }
+
+      header {
+        flex-direction: column;
+        gap: 20px;
+      }
+
+      nav {
+        justify-content: center;
+        gap: 16px;
+      }
+
+      .sigil {
+        width: 250px;
+        height: 250px;
+      }
+
+      .sigil::before {
+        width: 170px;
+        height: 170px;
+      }
+
+      .hut {
+        transform: scale(0.78);
+      }
+
+      .grid {
+        grid-template-columns: 1fr;
+      }
+
+      footer {
+        flex-direction: column;
+        text-align: center;
+      }
     }
   </style>
 </head>
 
 <body>
-  <div class="outer-frame"></div>
-  <div class="corner tl"></div>
-  <div class="corner tr"></div>
-  <div class="corner bl"></div>
-  <div class="corner br"></div>
+  <div class="frame"></div>
 
   <div class="page">
     <header>
       <div class="brand">
-        <div class="brand-mark"><span>BI</span></div>
+        <div class="mark">BI</div>
         Black Izba
       </div>
 
       <nav>
         <a href="#spirits">Spirits</a>
         <a href="#manifesto">Manifesto</a>
-        <a href="#black-list">Black List</a>
+        <a href="#contact">Contact</a>
       </nav>
     </header>
 
     <main class="hero">
       <div>
-        <div class="hero-kicker">The Black Bestiary Opens Soon</div>
+        <div class="kicker">The Black Bestiary Opens Soon</div>
+
         <h1>Black<br>Izba</h1>
+
         <div class="subtitle">Slavic Folk Horror Apparel</div>
+
         <p class="description">
-          Dark garments from old forests, forbidden roads, village nightmares,
-          dead kings, noon spirits and houses that walk when the moon is wrong.
+          Minimal black garments inspired by old forests, village nightmares,
+          dead kings, noon spirits and houses that walk in silence.
         </p>
 
-        <div class="hero-actions">
+        <div class="actions">
           <a class="button" href="#spirits">Enter the Bestiary</a>
           <a class="button" href="mailto:hello@blackizba.com">Join the Black List</a>
         </div>
       </div>
 
-      <div class="illustration" aria-hidden="true">
-        <div class="moon"></div>
-        <div class="dead-tree left"><span></span><span></span><span></span></div>
-        <div class="dead-tree right"><span></span><span></span><span></span></div>
-        <div class="ground"></div>
-
+      <div class="sigil" aria-hidden="true">
         <div class="hut">
-          <div class="roof"></div>
-          <div class="house"><div class="window"></div></div>
-          <div class="leg left"><div class="claws"></div></div>
-          <div class="leg right"><div class="claws"></div></div>
+          <div class="hut-body"></div>
+          <div class="leg left"></div>
+          <div class="leg right"></div>
         </div>
       </div>
     </main>
 
     <section id="spirits">
-      <div class="section-title"><h2>The First Spirits</h2></div>
-      <p class="intro">
-        The first collection is built as a small bestiary: each design belongs to
-        a creature, a curse, a forest path or an old tale whispered after dark.
+      <h2>First Spirits</h2>
+
+      <p class="section-text">
+        The first collection is shaped as a small black bestiary. Each design belongs
+        to a creature, a curse, a forest path or an old tale whispered after dark.
       </p>
 
-      <div class="creature-grid">
-        <article class="creature-card" data-number="01">
-          <div class="creature-symbol">✶</div>
+      <div class="grid">
+        <article class="card">
+          <div class="card-number">01</div>
           <h3>Baba Yaga</h3>
-          <p>The witch beyond the fence of bones. She knows the road, the hunger and the price.</p>
+          <p>The witch beyond the fence of bones.</p>
         </article>
 
-        <article class="creature-card" data-number="02">
-          <div class="creature-symbol">☩</div>
+        <article class="card">
+          <div class="card-number">02</div>
           <h3>Koschei</h3>
-          <p>The deathless king. His end is hidden in a needle, and the needle is never alone.</p>
+          <p>The deathless king with his end hidden away.</p>
         </article>
 
-        <article class="creature-card" data-number="03">
-          <div class="creature-symbol">♆</div>
+        <article class="card">
+          <div class="card-number">03</div>
           <h3>Leshy</h3>
-          <p>The master of trees, animal tracks and voices that sound like friends.</p>
+          <p>The old master of trees, paths and voices.</p>
         </article>
 
-        <article class="creature-card" data-number="04">
-          <div class="creature-symbol">☀</div>
+        <article class="card">
+          <div class="card-number">04</div>
           <h3>Poludnitsa</h3>
-          <p>The noon woman of the fields. She comes when the sun becomes a blade.</p>
+          <p>The noon woman of the fields and heat.</p>
         </article>
 
-        <article class="creature-card" data-number="05">
-          <div class="creature-symbol">☽</div>
-          <h3>Zmey Gorynych</h3>
-          <p>The three-headed serpent: fire, ruin and one dead mouth still speaking.</p>
+        <article class="card">
+          <div class="card-number">05</div>
+          <h3>Zmey</h3>
+          <p>The three-headed serpent of fire and ruin.</p>
         </article>
       </div>
     </section>
 
     <section id="manifesto">
-      <div class="section-title"><h2>Manifesto</h2></div>
+      <h2>Manifesto</h2>
 
-      <div class="manifesto">
-        <div class="manifesto-box large">
-          Black Izba is folklore printed like an old curse:
-          worn black, bone ink, rough lines, dead legends and stubborn memory.
-        </div>
-
-        <div class="manifesto-box">
-          <p>
-            We draw from Slavic folk horror, occult engraving, black metal graphics,
-            darkwave melancholy and the strange comfort of old village nightmares.
-          </p>
-          <p>
-            The house stands on chicken legs, the forest remembers names,
-            and the old spirits still ask for tribute.
-          </p>
-
-          <div class="runes">
-            <div class="rune">✦</div>
-            <div class="rune">☾</div>
-            <div class="rune">✕</div>
-            <div class="rune">☉</div>
-          </div>
-        </div>
-      </div>
+      <p class="section-text">
+        Black Izba is folklore reduced to black cloth, white ink and silence.
+        No decoration for decoration’s sake. Only marks, spirits, stories and shadow.
+      </p>
     </section>
 
-    <section id="black-list">
-      <div class="black-list">
-        <h2>Join the Black List</h2>
+    <section id="contact">
+      <div class="join">
+        <h2>Black List</h2>
         <p>
-          The first drop is being prepared. Early followers will see the first designs,
-          samples and release date before the gates open.
+          The first drop is being prepared. Early followers will see samples,
+          first designs and release dates before the gates open.
         </p>
         <a class="button" href="mailto:hello@blackizba.com">hello@blackizba.com</a>
       </div>
