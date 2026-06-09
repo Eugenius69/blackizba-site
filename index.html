@@ -1,86 +1,404 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Black Izba</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Black Izba — Coming Soon</title>
 
-<style>
-body {
-    margin: 0;
-    background: #000;
-    color: #d9c8a3;
-    font-family: Georgia, serif;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    min-height: 100vh;
-    text-align: center;
-}
+  <style>
+    :root {
+      --bg: #050504;
+      --bone: #b8ad98;
+      --bone-dim: #7d7466;
+      --ash: #2a2722;
+      --red: #5b0d0d;
+    }
 
-.container {
-    max-width: 900px;
-    padding: 40px;
-}
+    * {
+      box-sizing: border-box;
+    }
 
-h1 {
-    margin: 0;
-    font-size: clamp(72px, 12vw, 180px);
-    letter-spacing: 8px;
-    text-transform: uppercase;
-}
+    html,
+    body {
+      margin: 0;
+      min-height: 100%;
+      background: var(--bg);
+      color: var(--bone);
+      font-family: Georgia, "Times New Roman", serif;
+    }
 
-.subtitle {
-    margin-top: 24px;
-    font-size: 20px;
-    letter-spacing: 4px;
-    text-transform: uppercase;
-    color: #b5a27b;
-}
+    body {
+      overflow-x: hidden;
+    }
 
-.button {
-    display: inline-block;
-    margin-top: 40px;
-    padding: 14px 24px;
-    border: 1px solid #d9c8a3;
-    color: #d9c8a3;
-    text-decoration: none;
-    text-transform: uppercase;
-    letter-spacing: 2px;
-}
+    .page {
+      position: relative;
+      min-height: 100vh;
+      padding: 44px 7vw 34px;
+      display: grid;
+      grid-template-rows: auto 1fr auto;
+      background:
+        radial-gradient(circle at 72% 20%, rgba(190,175,145,.16), transparent 26%),
+        radial-gradient(circle at 57% 78%, rgba(88,14,10,.18), transparent 22%),
+        linear-gradient(90deg, rgba(0,0,0,.92) 0%, rgba(5,5,4,.82) 42%, rgba(5,5,4,.55) 100%),
+        url("https://images.unsplash.com/photo-1511497584788-876760111969?q=80&w=2400&auto=format&fit=crop") center / cover;
+      isolation: isolate;
+    }
 
-.button:hover {
-    background: #d9c8a3;
-    color: #000;
-}
+    .page::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      background:
+        repeating-linear-gradient(
+          0deg,
+          rgba(255,255,255,.025) 0,
+          rgba(255,255,255,.025) 1px,
+          transparent 1px,
+          transparent 3px
+        ),
+        radial-gradient(circle at center, transparent 0%, rgba(0,0,0,.72) 76%);
+      mix-blend-mode: screen;
+      opacity: .32;
+      z-index: -1;
+    }
 
-.collection {
-    margin-top: 60px;
-    color: #7f7358;
-    text-transform: uppercase;
-    letter-spacing: 2px;
-    font-size: 12px;
-}
-</style>
+    .page::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      background-image:
+        linear-gradient(rgba(255,255,255,.025) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,.025) 1px, transparent 1px);
+      background-size: 90px 90px;
+      opacity: .08;
+      z-index: -1;
+    }
+
+    .border {
+      position: fixed;
+      inset: 18px;
+      pointer-events: none;
+      border: 1px solid rgba(184,173,152,.18);
+      box-shadow: inset 0 0 90px rgba(0,0,0,.9);
+      z-index: 20;
+    }
+
+    .border::before,
+    .border::after {
+      content: "ᛟ ᛉ ᛟ ᛉ ᛟ ᛉ ᛟ ᛉ ᛟ";
+      position: absolute;
+      top: 22px;
+      bottom: 22px;
+      width: 24px;
+      writing-mode: vertical-rl;
+      letter-spacing: 14px;
+      font-size: 18px;
+      color: rgba(184,173,152,.18);
+    }
+
+    .border::before {
+      left: 18px;
+    }
+
+    .border::after {
+      right: 18px;
+    }
+
+    .nav {
+      display: flex;
+      justify-content: center;
+      gap: clamp(32px, 7vw, 120px);
+      font-size: 14px;
+      letter-spacing: .48em;
+      text-transform: uppercase;
+      color: var(--bone-dim);
+    }
+
+    .hero {
+      display: grid;
+      grid-template-columns: minmax(300px, 560px) 1fr;
+      align-items: center;
+      gap: 6vw;
+      padding: 58px 0 44px;
+    }
+
+    .logo {
+      width: min(420px, 78vw);
+      filter:
+        sepia(.4)
+        saturate(.55)
+        brightness(.82)
+        contrast(1.2)
+        drop-shadow(0 0 18px rgba(184,173,152,.08));
+      opacity: .92;
+      margin-bottom: 58px;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: clamp(36px, 5vw, 78px);
+      letter-spacing: .22em;
+      line-height: .95;
+      font-weight: 400;
+      text-transform: uppercase;
+      color: var(--bone);
+      text-shadow: 0 0 24px rgba(184,173,152,.14);
+    }
+
+    .divider {
+      width: 310px;
+      max-width: 80%;
+      height: 1px;
+      margin: 34px 0;
+      background: linear-gradient(90deg, transparent, var(--bone-dim), transparent);
+    }
+
+    .coming {
+      font-size: clamp(20px, 2vw, 34px);
+      letter-spacing: .72em;
+      text-transform: uppercase;
+      color: var(--bone);
+      margin-bottom: 38px;
+    }
+
+    .born {
+      max-width: 360px;
+      font-size: 18px;
+      line-height: 1.8;
+      letter-spacing: .42em;
+      text-transform: uppercase;
+      color: var(--bone-dim);
+    }
+
+    .mark {
+      color: var(--red);
+      font-size: 28px;
+      margin: 22px 0;
+      letter-spacing: .2em;
+    }
+
+    .socials {
+      display: flex;
+      gap: 18px;
+      margin-top: 48px;
+    }
+
+    .socials a {
+      width: 48px;
+      height: 48px;
+      display: grid;
+      place-items: center;
+      border: 1px solid rgba(184,173,152,.25);
+      color: var(--bone-dim);
+      text-decoration: none;
+      font-size: 18px;
+      transition: .25s ease;
+      background: rgba(0,0,0,.24);
+    }
+
+    .socials a:hover {
+      color: var(--bone);
+      border-color: rgba(184,173,152,.65);
+      box-shadow: 0 0 24px rgba(184,173,152,.08);
+    }
+
+    .scene {
+      min-height: 560px;
+      position: relative;
+      opacity: .9;
+    }
+
+    .moon {
+      position: absolute;
+      right: 21%;
+      top: 2%;
+      width: 116px;
+      height: 116px;
+      border-radius: 50%;
+      background: radial-gradient(circle at 38% 35%, #d5cfbd, #766f63 55%, transparent 66%);
+      filter: blur(.3px);
+      opacity: .46;
+      box-shadow: 0 0 70px rgba(184,173,152,.22);
+    }
+
+    .hut {
+      position: absolute;
+      right: 7%;
+      top: 15%;
+      width: min(430px, 46vw);
+      aspect-ratio: 1.05;
+      border-left: 80px solid transparent;
+      border-right: 80px solid transparent;
+      border-bottom: 155px solid rgba(70,63,52,.52);
+      filter: drop-shadow(0 0 35px rgba(0,0,0,.9));
+      transform: rotate(-2deg);
+    }
+
+    .hut::before {
+      content: "";
+      position: absolute;
+      top: 145px;
+      left: -34px;
+      width: 270px;
+      height: 245px;
+      background:
+        linear-gradient(90deg, rgba(184,173,152,.08) 1px, transparent 1px) 0 0 / 26px 100%,
+        linear-gradient(rgba(184,173,152,.08) 1px, transparent 1px) 0 0 / 100% 26px,
+        rgba(22,19,16,.94);
+      border: 1px solid rgba(184,173,152,.12);
+      box-shadow: inset 0 0 70px rgba(0,0,0,.95);
+    }
+
+    .hut::after {
+      content: "";
+      position: absolute;
+      top: 208px;
+      left: 64px;
+      width: 64px;
+      height: 76px;
+      border: 1px solid rgba(184,173,152,.2);
+      background: rgba(0,0,0,.72);
+      box-shadow: inset 0 0 18px rgba(184,173,152,.08);
+    }
+
+    .idol {
+      position: absolute;
+      right: 4%;
+      bottom: 2%;
+      width: 260px;
+      height: 390px;
+      opacity: .9;
+    }
+
+    .idol::before {
+      content: "";
+      position: absolute;
+      left: 96px;
+      top: 20px;
+      width: 72px;
+      height: 96px;
+      border-radius: 48% 48% 40% 40%;
+      border: 2px solid rgba(184,173,152,.42);
+      background: radial-gradient(circle at 50% 40%, transparent 0 12px, rgba(184,173,152,.25) 13px 15px, transparent 16px);
+    }
+
+    .idol::after {
+      content: "";
+      position: absolute;
+      left: 68px;
+      top: 115px;
+      width: 126px;
+      height: 260px;
+      background:
+        linear-gradient(90deg, transparent 0 40%, rgba(184,173,152,.18) 41% 43%, transparent 44%),
+        rgba(20,17,14,.78);
+      clip-path: polygon(48% 0, 70% 12%, 100% 100%, 0 100%, 28% 12%);
+      border: 1px solid rgba(184,173,152,.16);
+    }
+
+    .ritual {
+      position: absolute;
+      left: 15%;
+      right: 6%;
+      bottom: 0;
+      height: 190px;
+      background:
+        radial-gradient(ellipse at center, rgba(184,173,152,.18), transparent 40%),
+        linear-gradient(transparent 0%, rgba(0,0,0,.88) 82%);
+      border-bottom: 1px solid rgba(184,173,152,.18);
+    }
+
+    .footer {
+      text-align: center;
+      letter-spacing: .36em;
+      text-transform: uppercase;
+      color: var(--bone-dim);
+      font-size: clamp(11px, 1.2vw, 15px);
+      padding-top: 22px;
+    }
+
+    @media (max-width: 900px) {
+      .page {
+        padding: 34px 28px;
+      }
+
+      .nav {
+        gap: 22px;
+        font-size: 11px;
+        letter-spacing: .28em;
+      }
+
+      .hero {
+        grid-template-columns: 1fr;
+        padding-top: 44px;
+      }
+
+      .scene {
+        min-height: 380px;
+        order: -1;
+      }
+
+      .logo {
+        margin-bottom: 36px;
+      }
+
+      .border::before,
+      .border::after {
+        display: none;
+      }
+    }
+  </style>
 </head>
 
 <body>
+  <div class="border"></div>
 
-<div class="container">
-    <h1>Black Izba</h1>
+  <main class="page">
+    <nav class="nav">
+      <span>Music</span>
+      <span>Culture</span>
+      <span>Our Own</span>
+    </nav>
 
-    <div class="subtitle">
-        Slavic Folk Horror Apparel
-    </div>
+    <section class="hero">
+      <div class="content">
+        <img class="logo" src="logo.png" alt="Black Izba logo" />
 
-    <a class="button" href="mailto:hello@blackizba.com">
-        Join The Black List
-    </a>
+        <h1>Blackizba.com</h1>
 
-    <div class="collection">
-        Baba Yaga • Koschei • Leshy • Poludnitsa • Zmey Gorynych
-    </div>
-</div>
+        <div class="divider"></div>
 
+        <div class="coming">Coming Soon</div>
+
+        <div class="mark">ᛟ</div>
+
+        <p class="born">
+          Something real<br />
+          is being born
+        </p>
+
+        <div class="socials" aria-label="Social links">
+          <a href="#" aria-label="Instagram">◎</a>
+          <a href="#" aria-label="VK">VK</a>
+          <a href="#" aria-label="Telegram">↗</a>
+          <a href="mailto:info@blackizba.com" aria-label="Email">✉</a>
+        </div>
+      </div>
+
+      <div class="scene" aria-hidden="true">
+        <div class="moon"></div>
+        <div class="hut"></div>
+        <div class="idol"></div>
+        <div class="ritual"></div>
+      </div>
+    </section>
+
+    <footer class="footer">
+      Born under the sun. Loyal to the shadows
+    </footer>
+  </main>
 </body>
 </html>
