@@ -1,34 +1,83 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Black Izba</title>
-<style>
-body {
-    background: #000;
-    color: #e6e0d6;
-    font-family: serif;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    text-align: center;
-    margin: 0;
-}
-h1 {
-    font-size: 4rem;
-    margin-bottom: 1rem;
-}
-p {
-    font-size: 1.2rem;
-}
-</style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Black Izba</title>
+  <meta name="description" content="Black Izba — Slavic dark folklore clothing and visual culture." />
+  <link rel="stylesheet" href="./styles.css" />
 </head>
+
 <body>
-<h1>BLACK IZBA</h1>
-<p>Slavic Folk Horror Apparel</p>
-<p>Coming Soon</p>
+  <div class="noise"></div>
+  <div class="embers"></div>
+
+  <main class="page">
+    <header class="hero">
+      <div class="sigil-frame">
+        <img src="./assets/logo.png" alt="Black Izba logo" class="logo" />
+      </div>
+
+      <p class="eyebrow">Slavic Dark Folklore Apparel</p>
+
+      <h1>Black Izba</h1>
+
+      <p class="intro">
+        A clothing project born from old forests, dead villages, pagan shadows,
+        and the things that still whisper behind the stove.
+      </p>
+
+      <div class="divider">
+        <span></span>
+        <strong>✦</strong>
+        <span></span>
+      </div>
+
+      <p class="status">The house is being built.</p>
+      <p class="substatus">First prints are coming soon.</p>
+    </header>
+
+    <section class="creatures">
+      <article class="card">
+        <img src="./assets/babayaga.jpeg" alt="Baba Yaga artwork" />
+        <h2>Baba Yaga</h2>
+        <p>The bone-legged mistress of the border between the living and the dead.</p>
+      </article>
+
+      <article class="card">
+        <img src="./assets/kashei.jpeg" alt="Koschei artwork" />
+        <h2>Koschei</h2>
+        <p>The deathless king whose soul is hidden deeper than fear itself.</p>
+      </article>
+
+      <article class="card">
+        <img src="./assets/gorinich.jpeg" alt="Zmey Gorynych artwork" />
+        <h2>Zmey Gorynych</h2>
+        <p>The many-headed fire that rises from the old mythic earth.</p>
+      </article>
+
+      <article class="card">
+        <img src="./assets/polydenica.jpeg" alt="Poludnica artwork" />
+        <h2>Poludnica</h2>
+        <p>The noon demon walking through the wheat under a merciless sun.</p>
+      </article>
+    </section>
+
+    <section class="manifesto">
+      <h2>From the black soil</h2>
+      <p>
+        Black Izba is a visual ritual: monochrome folklore, occult engraving,
+        ancient fear, and wearable myth. No clean nostalgia. No polite fantasy.
+        Only the old dark returning as cloth, ink, and symbol.
+      </p>
+    </section>
+
+    <footer>
+      <p>Born under the sun. Loyal to the shadows.</p>
+      <small>© Black Izba</small>
+    </footer>
+  </main>
+
+  <script src="./script.js"></script>
 </body>
 </html>
